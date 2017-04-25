@@ -4,4 +4,4 @@ title: Car4Tegra ClassCreator
 # Short description (goes below the title; it will also be used in the RSS feed)
 description: Creates code files based on customizable templates
 
-theme: jekyll-theme-modernist
+theme: jekyll-theme-cayman
