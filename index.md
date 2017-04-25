@@ -1,3 +1,5 @@
+<img src="/images/Screenshot.png" alt="Screenshot" align="middle">
+
 # Building ClassCreator
 To automatically copy the **template** directory to the build directory an additional building step has to be added in Qt Creator:
 
