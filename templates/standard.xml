@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<template name="Standard Class" headerfile="standard_header.template" sourcefile="standard_source.template" classNameProperty="CLASS_NAME"> 
+   <filepath file="header" path="$@PRIVATE_FILES$$PRIVATE_PATH$$PRIVATE_FILES@$$HEADER_PATH$" />
+   <filepath file="source" path="$@PRIVATE_FILES$$PRIVATE_PATH$$PRIVATE_FILES@$$SOURCE_PATH$" />
+
+   <property name="Class name" identifier="CLASS_NAME" type="string" default="ClassName" info="Name of the class" format="[A-Z].[a-zA-Z0-9_]*" group="Class" />
+   <property name="Macro Include Guard" identifier="MACRO_GUARD" type="bool" default="TRUE" info="Protect header with macro" group="Class" />
+   
+   <property name="Has Namespace" identifier="HAS_NAMESPACE" type="bool" default="TRUE" info="Class is part of namespaces" group="Namespace" />
+   <property name="Namespace" identifier="NAMESPACE" type="string" default="Namespace" info="Name of the namespace" format="[A-Z].[a-zA-Z0-9_]*" group="Namespace" />
+   <property name="Has Sub Namespace" identifier="HAS_SUBNAMESPACE" type="bool" default="FALSE" info="Class is part of sub namespaces" group="Namespace" />
+   <property name="Sub Namespace" identifier="SUB_NAMESPACE" type="string" default="SubNamespace" info="Name of the sub namespace" format="[A-Z].[a-zA-Z0-9_]*" group="Namespace" />
+   
+   <property name="Is derived class" identifier="BASE_CLASS" type="bool" default="FALSE" info="Class is deriviated from another class" group="Inheritance" />
+   <property name="Base class" identifier="BASE_CLASS" type="string" default="BaseClass" info="Name of the base class" group="Inheritance"  format="[A-Z].[a-zA-Z0-9_]*"/>
+   <property name="Derivation Type" identifier="DERIV_TYPE" type="stringlist" values="public,protected,private" default="0" info="Type of the derivation" group="Inheritance" />
+
+   <property name="Public Constructor" identifier="PUBLIC_CONSTR" type="bool" default="TRUE" info="Create public default constructor" group="Constructor / Destructor" />
+   <property name="QT Constructor" identifier="QT_CONSTR" type="bool" default="FALSE" info="Create QT-style constructor" group="Constructor / Destructor" />   
+   <property name="Virtual Destructor" identifier="VIRTUAL_DESTR" type="bool" default="FALSE" info="Create virtual denstructor" group="Constructor / Destructor" />
+   <property name="Is Static Class" identifier="STATIC" type="bool" default="FALSE" info="Is static class" group="Constructor / Destructor" />
+   
+   <filepathproperty name="Header Path" identifier="HEADER_PATH" type="string" default="/include" info="Subdirectory in plugin folder for header file"  format="[/].[a-zA-Z0-9_/]*" group="File Paths" />
+   <filepathproperty name="Source Path" identifier="SOURCE_PATH" type="string" default="/source" info="Subdirectory in plugin folder for source file" format="[/].[a-zA-Z0-9_/]*" group="File Paths" />
+   <filepathproperty name="Private Path" identifier="PRIVATE_PATH" type="string" default="/private" info="Subdirectory in plugin folder for private files" format="[/].[a-zA-Z0-9_/]*" group="File Paths" />
+   <filepathproperty name="Use Private Path" identifier="PRIVATE_FILES" type="bool" default="FAlSE" info="Insert files in private folder" group="File Paths" />
+   
+   <!-- <postprocessing name="Auto CMake" command="cmake" params="param1 param2 param3" info="Runs cmake for project after generate." /> -->
+   <!-- <postprocessing name="SVN add" command="asdf" params="" info="Makes an SVN add to all generated files and folders." /> -->
+</template>

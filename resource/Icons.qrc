@@ -1,0 +1,13 @@
+<RCC>
+  <qresource prefix="ToolIcons">
+    <file>Icon_Generate.png</file>
+    <file>Icon_Preview.png</file>
+    <file>Icon_Settings.png</file>
+  </qresource>
+  <qresource prefix="Banner">
+    <file>Banner.png</file>
+  </qresource>
+  <qresource prefix="AppIcon">
+    <file>Wink.ico</file>
+  </qresource>
+</RCC>

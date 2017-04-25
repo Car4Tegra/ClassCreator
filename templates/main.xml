@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<template name="Main" sourcefile="main_source.template" classNameProperty="FILE_NAME"> 
+   <filepath file="source" path="" />
+
+   <property name="File name" identifier="FILE_NAME" type="string" default="main" info="Name of the file" format="[a-z0-9_]*" group="File" />
+	
+</template>

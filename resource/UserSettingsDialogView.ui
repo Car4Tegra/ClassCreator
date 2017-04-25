@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>UserSettingsDialogView</class>
+ <widget class="QWidget" name="UserSettingsDialogView">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>251</width>
+    <height>177</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>User settings</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Icons.qrc">
+    <normaloff>:/ToolIcons/Icon_Settings.png</normaloff>:/ToolIcons/Icon_Settings.png</iconset>
+  </property>
+  <property name="title" stdset="0">
+   <string/>
+  </property>
+  <property name="subTitle" stdset="0">
+   <string/>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="9" column="1">
+    <widget class="QLineEdit" name="settingsDateEdit"/>
+   </item>
+   <item row="24" column="0">
+    <widget class="QPushButton" name="settingsSave">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string>Save</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="0">
+    <widget class="QLabel" name="settingsDateLabel">
+     <property name="text">
+      <string>Dateformat:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="19" column="1">
+    <widget class="QLineEdit" name="settingsHeaderExEdit"/>
+   </item>
+   <item row="22" column="1">
+    <widget class="QLineEdit" name="settingsIndentEdit"/>
+   </item>
+   <item row="22" column="0">
+    <widget class="QLabel" name="settingsIndentLabel">
+     <property name="text">
+      <string>Indent (space):</string>
+     </property>
+    </widget>
+   </item>
+   <item row="19" column="0">
+    <widget class="QLabel" name="settingsHeaderExLabel">
+     <property name="text">
+      <string>Header extension:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="0">
+    <widget class="QLabel" name="settingsSourceExLabel">
+     <property name="text">
+      <string>Source extension:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1">
+    <widget class="QLineEdit" name="settingsAuthorEdit"/>
+   </item>
+   <item row="8" column="0">
+    <widget class="QLabel" name="settingsAuthorLabel">
+     <property name="text">
+      <string>Author:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="1">
+    <widget class="QLineEdit" name="settingsSourceExEdit"/>
+   </item>
+   <item row="25" column="0">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="Icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

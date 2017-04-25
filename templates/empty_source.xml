@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<template name="Empty Source" sourcefile="empty_source.template" classNameProperty="FILE_NAME"> 
+   <filepath file="source" path="$@PRIVATE_FILES$$PRIVATE_PATH$$PRIVATE_FILES@$$SOURCE_PATH$" />
+
+   <property name="File name" identifier="FILE_NAME" type="string" default="filename" info="Name of the file" format="[a-z0-9_]*" group="File" />
+	
+	<property name="Include Header" identifier="INCLUDE_HEADER" type="bool" default="FALSE" info="Include header file" group="Header" />
+   
+   <property name="Has Namespace" identifier="HAS_NAMESPACE" type="bool" default="FALSE" info="Code is part of namespaces" group="Namespace" />
+   <property name="Namespace" identifier="NAMESPACE" type="string" default="Namespace" info="Name of the namespace" format="[A-Z].[a-zA-Z0-9_]*" group="Namespace" />
+   <property name="Has Sub Namespace" identifier="HAS_SUBNAMESPACE" type="bool" default="FALSE" info="Code is part of sub namespaces" group="Namespace" />
+   <property name="Sub Namespace" identifier="SUB_NAMESPACE" type="string" default="SubNamespace" info="Name of the sub namespace" format="[A-Z].[a-zA-Z0-9_]*" group="Namespace" />
+	
+	<filepathproperty name="Source Path" identifier="SOURCE_PATH" type="string" default="/source" info="Subdirectory in plugin folder for source file" format="[/].[a-zA-Z0-9_/]*" group="File Path" />
+   <filepathproperty name="Private Path" identifier="PRIVATE_PATH" type="string" default="/private" info="Subdirectory in plugin folder for private files" format="[/].[a-zA-Z0-9_/]*" group="File Path" />
+   <filepathproperty name="Use Private Path" identifier="PRIVATE_FILES" type="bool" default="FAlSE" info="Insert files in private folder" group="File Path" />
+
+</template>

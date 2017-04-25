@@ -1,14 +1,11 @@
-# CMake ignores
+# Doxygen ignores
 
-CMakeCache.txt
-CMakeFiles
-CMakeScripts
-Makefile
-cmake_install.cmake
-install_manifest.txt
-CTestTestfile.cmake
+/doxygen/Doxygen.log
+/doxygen/html
 
 # C++ objects and libs
+
+/build
 
 *.slo
 *.lo
