@@ -1,5 +1,8 @@
 <img src="/images/Screenshot.png" alt="Screenshot" align="middle">
 
+- 
+{:toc}
+
 # Building ClassCreator
 To automatically copy the **template** directory to the build directory an additional building step has to be added in Qt Creator:
 
@@ -66,7 +69,7 @@ Some of the attributes of the parent node are optional and could be omitted if n
 
 There are five different node types:
 
-### Node `filepath`
+### Node filepath
 
 There has to be a `filepath` node for each template file used (header / source / CMake). The nodes for unused template files could be omitted.
 
@@ -88,7 +91,7 @@ There has to be a `filepath` node for each template file used (header / source /
 <filepath file="header" path="$HEADER_PATH$$@USE_SUB_DIR$\$SUB_DIRECTORY$$USE_SUB_DIR@$" />
 ```
 
-### Node `directory`
+### Node directory
 
 The `directory` node allows to create directories, also if there is no file inside.
 
@@ -101,7 +104,7 @@ The `directory` node allows to create directories, also if there is no file insi
 
   Contains the template for the directory path relative to the main output path. It could be written directly or by using tokens.
 
-### Node `property`
+### Node property
 
 The `property` nodes represent the settings for this template. From this nodes the tokens for template parsing are created (see token section below). There are three types of `property` nodes:
 
@@ -151,7 +154,7 @@ The `property` nodes represent the settings for this template. From this nodes t
 
   Name of the group the property is corresponding to (e.g. "Example Group")
 
-### Node `filepathproperty`
+### Node filepathproperty
 
 The `filepathproperty` node is the same as the `property` node above but it is highlighted in green in the property browser of the GUI. It should be used for properties which only have an impact on `filepath` templates but not on the content of the template files.
 
@@ -161,7 +164,7 @@ The `filepathproperty` node is the same as the `property` node above but it is h
 <filepathproperty name="" identifier="" type="stringlist" default="" values="" info="" group="" />
 ```
 
-### Node `postprocessing`
+### Node postprocessing
 
 > **The `postprocessing` node is not tested yet!!!**<br>
 > The `postprocessing` node allows to run commands after file generation. They are selectable in the property browser of the GUI (highlighted in red).
