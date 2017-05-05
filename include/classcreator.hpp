@@ -60,10 +60,8 @@ public:
     * @param[in]  arFileName           Path to template file
     * @param[out] arParsedContent      Content of the generated file
     * @param[in]  arProperties         Properties for parsing
-    *
-    * @return  File content created successfully
     */
-   static bool parseTemplateFile(const std::string& arFileName,
+   static void parseTemplateFile(const std::string& arFileName,
                                  std::string& arParsedContent,
                                  const std::vector<std::shared_ptr<ClassTemplateProperty> >& arProperties);
 
@@ -73,10 +71,8 @@ public:
     * @param[in]  arTemplate           Template data
     * @param[out] arParsedContent      Content of the generated file
     * @param[in]  arProperties         Properties for parsing
-    *
-    * @return  File content created successfully
     */
-   static bool parseTemplate(const std::string& arTemplate,
+   static void parseTemplate(const std::string& arTemplate,
                              std::string& arParsedContent,
                              const std::vector<std::shared_ptr<ClassTemplateProperty> >& arProperties);
    
@@ -99,10 +95,8 @@ private:
     * Get content of template file
     * @param[in]  arFileName           Path to template file
     * @param[out] arOutFileContent     Content of the template file
-    *
-    * @return  File reading completed successfully
     */
-   static bool readFile(const std::string& arFileName, std::string& arOutFileContent);
+   static void readFile(const std::string& arFileName, std::string& arOutFileContent);
 
 
    /**
@@ -110,8 +104,6 @@ private:
     * @param[in]  arProperties         Path to template file
     * @param[out] arTokens             Vector with all tokens
     * @param[out] arBlockTokens        Vector with all block tokens
-    *
-    * @return  Conversion completed successfully
     */
    static void convertToTokens(const std::vector<std::shared_ptr<ClassTemplateProperty> >& arProperties,
                                std::vector<std::shared_ptr<BaseToken> >& arTokens,

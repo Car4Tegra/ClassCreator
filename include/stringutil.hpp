@@ -36,6 +36,7 @@
 
 // std includes
 #include <string>
+#include <vector>
 
 
 /**

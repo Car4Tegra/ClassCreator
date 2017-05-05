@@ -50,7 +50,7 @@
 #include "stringutil.hpp"
 
 
-bool ClassCreator::parseTemplateFile(const std::string& arFileName,
+void ClassCreator::parseTemplateFile(const std::string& arFileName,
                                      std::string& arParsedContent,
                                      const std::vector<std::shared_ptr<ClassTemplateProperty> >& arProperties)
 {
@@ -67,8 +67,6 @@ bool ClassCreator::parseTemplateFile(const std::string& arFileName,
    // replace tokens
    lTemplate = StringParser::replaceTokens(lTemplate, lTokens);
    arParsedContent = StringParser::replaceBlockTokens(lTemplate, lBlockTokens);      
-   
-   return true;
 }
 
 
@@ -76,7 +74,7 @@ bool ClassCreator::parseTemplateFile(const std::string& arFileName,
 // ----------
 
 
-bool ClassCreator::parseTemplate(const std::string& arTemplate,
+void ClassCreator::parseTemplate(const std::string& arTemplate,
                                  std::string& arParsedContent,
                                  const std::vector<std::shared_ptr<ClassTemplateProperty> >& arProperties)
 {
@@ -90,8 +88,6 @@ bool ClassCreator::parseTemplate(const std::string& arTemplate,
    // replace tokens
    lTemplate = StringParser::replaceTokens(arTemplate, lTokens);
    arParsedContent = StringParser::replaceBlockTokens(lTemplate, lBlockTokens);      
-   
-   return true;
 }
 
 
@@ -99,7 +95,7 @@ bool ClassCreator::parseTemplate(const std::string& arTemplate,
 // ----------
 
 
-bool ClassCreator::readFile(const std::string& arFileName, std::string& arOutFileContent)
+void ClassCreator::readFile(const std::string& arFileName, std::string& arOutFileContent)
 {
    QFile file(QString(arFileName.c_str()));
 
@@ -111,10 +107,12 @@ bool ClassCreator::readFile(const std::string& arFileName, std::string& arOutFil
    QTextStream lStream(&file);
 
    arOutFileContent = lStream.readAll().toStdString();
-
-   // finished
-   return true;
 }
+
+
+// -----------------------------------------------------------------------
+// ----------
+
 
 void ClassCreator::convertToTokens(const std::vector<std::shared_ptr<ClassTemplateProperty> >& arProperties,
                                    std::vector<std::shared_ptr<BaseToken> >& arTokens,

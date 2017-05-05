@@ -65,10 +65,8 @@ public:
     * @param[out] arTplProps           Vector with all properties of this template
     * @param[out] arFileProps          Vector with all file path properties of this template
     * @param[out] arTplCmd             Vector with all commands of this template
-    *
-    * @return  parsing of file completed successfully
     */
-   static bool loadTemplateParameters(const std::string& arFilePath,
+   static void loadTemplateParameters(const std::string& arFilePath,
                                       std::shared_ptr<ClassTemplateData>& arTplData,
                                       std::vector<std::shared_ptr<ClassTemplateProperty> >& arTplProps,
                                       std::vector<std::shared_ptr<ClassTemplateProperty> >& arFileProps,
@@ -79,10 +77,8 @@ public:
     * @brief Parses a class template properties file
     * @param[in]  arFilePath           Path of the class template properties file
     * @param[out] arTplData            Global class template information
-    *
-    * @return  parsing of file completed successfully
     */
-   static bool loadTemplateParameters(const std::string& arFilePath,
+   static void loadTemplateParameters(const std::string& arFilePath,
                                       std::shared_ptr<ClassTemplateData>& arTplData);
 
 
@@ -93,20 +89,16 @@ private:
     * @brief Opens template properties file for parsing
     * @param[in]  arFilePath           Path of the class template properties file
     * @param[out] arQDomDoc            Content of the XML configuration file
-    
-    * @return  file opened successfully
     */
-   static bool openTemplateFile(const std::string& arFilePath, QDomDocument& arQDomDoc);
+   static void openTemplateFile(const std::string& arFilePath, QDomDocument& arQDomDoc);
 
 
    /**
     * @brief Parses the global information for the template
     * @param[in]  arQDomDoc            Content of the XML configuration file
     * @param[out] arTplData            Template information file
-    *
-    * @return  parsing of file completed successfully
     */
-   static bool parseTemplInfos(const QDomDocument& arQDomDoc,
+   static void parseTemplInfos(const QDomDocument& arQDomDoc,
                                std::shared_ptr<ClassTemplateData>& arTplData);
 
 
@@ -116,10 +108,8 @@ private:
     * @param[out] arHeaderPath         Path template for header file
     * @param[out] arSourcePath         Path template for source file
     * @param[out] arCmakePath          Path template for CMake file
-    *
-    * @return  parsing of file completed successfully
     */
-   static bool parseFilePaths(const QDomDocument& arQDomDoc,
+   static void parseFilePaths(const QDomDocument& arQDomDoc,
                               std::string& arHeaderPath,
                               std::string& arSourcePath,
                               std::string& arCmakePath);
@@ -129,20 +119,16 @@ private:
     * @brief Parses the directory templates
     * @param[in]  arQDomDoc            Content of the XML configuration file
     * @param[out] arDir                Directory templates which should be created
-    *
-    * @return  parsing of file completed successfully
     */
-   static bool parseDirectories(const QDomDocument& arQDomDoc, std::vector<std::string>& arDir);
+   static void parseDirectories(const QDomDocument& arQDomDoc, std::vector<std::string>& arDir);
 
 
    /**
     * @brief Parses the content of a class template file for properties
     * @param[in]  arQDomDoc            Content of the XML configuration file
     * @param[out] arTplProps           Properties of the template
-    *
-    * @return  parsing of file completed successfully
     */
-   static bool parseProperties(const QDomDocument& arQDomDoc,
+   static void parseProperties(const QDomDocument& arQDomDoc,
                                std::vector<std::shared_ptr<ClassTemplateProperty> >& arTplProps);
 
 
@@ -150,10 +136,8 @@ private:
     * @brief Parses the content of a class template file for properties
     * @param[in]  arQDomDoc            Content of the XML configuration file
     * @param[out] arTplProps           Properties of the template
-    *
-    * @return  parsing of file completed successfully
     */
-   static bool parsePostProcessing(const QDomDocument& arQDomDoc,
+   static void parsePostProcessing(const QDomDocument& arQDomDoc,
                                    std::vector<std::shared_ptr<ClassTemplateCommand> >& arTplCmd);
 
 
@@ -161,10 +145,8 @@ private:
     * @brief Parses the content of a class template file for file path properties
     * @param[in]  arQDomDoc            Content of the XML configuration file
     * @param[out] arTplProps           File path properties of the template
-    *
-    * @return  parsing of file completed successfully
     */
-   static bool parseFileProperties(const QDomDocument& arQDomDoc,
+   static void parseFileProperties(const QDomDocument& arQDomDoc,
                                    std::vector<std::shared_ptr<ClassTemplateProperty> >& arTplFileProps);
               
  

@@ -46,7 +46,7 @@
 #include "stringutil.hpp"
 
 
-bool ClassTemplateXMLParser::loadTemplateParameters(const std::string& arFilePath,
+void ClassTemplateXMLParser::loadTemplateParameters(const std::string& arFilePath,
                                                     std::shared_ptr<ClassTemplateData>& arTplData,
                                                     std::vector<std::shared_ptr<ClassTemplateProperty> >& arTplProps,
                                                     std::vector<std::shared_ptr<ClassTemplateProperty> >& arFileProps,
@@ -55,49 +55,34 @@ bool ClassTemplateXMLParser::loadTemplateParameters(const std::string& arFilePat
    QDomDocument lQDomDoc;
 
    // Load file
-   if(openTemplateFile(arFilePath, lQDomDoc))
-   {
-      // Parse template infos
-      if(!parseTemplInfos(lQDomDoc, arTplData)) return false;
+   openTemplateFile(arFilePath, lQDomDoc);
 
-      // Parse for properties
-      if(!parseProperties(lQDomDoc, arTplProps)) return false;
+   // Parse template infos
+   parseTemplInfos(lQDomDoc, arTplData);
 
-      // Parse for file properties
-      if(!parseFileProperties(lQDomDoc, arFileProps)) return false;
+   // Parse for properties
+   parseProperties(lQDomDoc, arTplProps);
 
-      // Parse for post processing commands
-      if(!parsePostProcessing(lQDomDoc, arTplCmd)) return false;
+   // Parse for file properties
+   parseFileProperties(lQDomDoc, arFileProps);
 
-      return true;
-   }
-   else
-   {
-      return false;
-   }
-
+   // Parse for post processing commands
+   parsePostProcessing(lQDomDoc, arTplCmd);
 }
 
 
 // -----------------------------------------------------------------------
 // ----------
 
-bool ClassTemplateXMLParser::loadTemplateParameters(const std::string& arFilePath,
+void ClassTemplateXMLParser::loadTemplateParameters(const std::string& arFilePath,
                                                     std::shared_ptr<ClassTemplateData>& arTplData)
 {
    QDomDocument lQDomDoc;
 
    // Load file
-   if(openTemplateFile(arFilePath, lQDomDoc))
-   {
-      // Parse template infos
-      return parseTemplInfos(lQDomDoc, arTplData);
-   }
-   else
-   {
-      return false;
-   }
-
+   openTemplateFile(arFilePath, lQDomDoc);
+   // Parse template infos
+   parseTemplInfos(lQDomDoc, arTplData);
 }
 
 
@@ -105,7 +90,7 @@ bool ClassTemplateXMLParser::loadTemplateParameters(const std::string& arFilePat
 // ----------
 
 
-bool ClassTemplateXMLParser::openTemplateFile(const std::string& arFilePath, QDomDocument& arQDomDoc)
+void ClassTemplateXMLParser::openTemplateFile(const std::string& arFilePath, QDomDocument& arQDomDoc)
 {
    QFile file(QString(arFilePath.c_str()));
    QString errMsg;      // error message
@@ -115,17 +100,13 @@ bool ClassTemplateXMLParser::openTemplateFile(const std::string& arFilePath, QDo
    if(!file.open(QIODevice::ReadOnly))
    {
       throw std::runtime_error("XML Configuration file could not be loaded. Path: " + arFilePath);
-      return false;
    }
 
    if(!arQDomDoc.setContent(&file, false, &errMsg, &errLine, &errCol))
    {
       throw std::runtime_error("Error while parsing file:  msg=" + errMsg.toStdString() + 
          " file=" + arFilePath + " line" + std::to_string(errLine) + " column=" + std::to_string(errCol));
-      return false;
    }
-
-   return true;
 }
 
 
@@ -133,7 +114,7 @@ bool ClassTemplateXMLParser::openTemplateFile(const std::string& arFilePath, QDo
 // ----------
 
 
-bool ClassTemplateXMLParser::parseTemplInfos(const QDomDocument& arQDomDoc, std::shared_ptr<ClassTemplateData>& arTplData)
+void ClassTemplateXMLParser::parseTemplInfos(const QDomDocument& arQDomDoc, std::shared_ptr<ClassTemplateData>& arTplData)
 {
    // get root element
    QDomElement lDocElem = arQDomDoc.documentElement();
@@ -181,11 +162,11 @@ bool ClassTemplateXMLParser::parseTemplInfos(const QDomDocument& arQDomDoc, std:
 
    // Parse file path templates
    std::string lHeaderPath, lSourcePath, lCmakePath;
-   if(!parseFilePaths(arQDomDoc, lHeaderPath, lSourcePath, lCmakePath)) return false;
+   parseFilePaths(arQDomDoc, lHeaderPath, lSourcePath, lCmakePath);
 
    // Parse directories
    std::vector<std::string> lDir;
-   if(!parseDirectories(arQDomDoc, lDir)) return false;
+   parseDirectories(arQDomDoc, lDir);
 
    // create data item
    arTplData = std::make_shared<ClassTemplateData>(tmplName,
@@ -202,8 +183,6 @@ bool ClassTemplateXMLParser::parseTemplInfos(const QDomDocument& arQDomDoc, std:
                                                    lDir,
                                                    tmplUseSystemPath,
                                                    tmplSystemVar);
-
-   return true;
 }
 
 
@@ -211,7 +190,7 @@ bool ClassTemplateXMLParser::parseTemplInfos(const QDomDocument& arQDomDoc, std:
 // ----------
 
 
-bool ClassTemplateXMLParser::parseFilePaths(const QDomDocument& arQDomDoc,
+void ClassTemplateXMLParser::parseFilePaths(const QDomDocument& arQDomDoc,
                                             std::string& arHeaderPath,
                                             std::string& arSourcePath,
                                             std::string& arCmakePath)
@@ -247,8 +226,6 @@ bool ClassTemplateXMLParser::parseFilePaths(const QDomDocument& arQDomDoc,
 
       }
    }
-
-   return true;
 }
 
 
@@ -256,7 +233,7 @@ bool ClassTemplateXMLParser::parseFilePaths(const QDomDocument& arQDomDoc,
 // ----------
 
 
-bool ClassTemplateXMLParser::parseDirectories(const QDomDocument& arQDomDoc, std::vector<std::string>& arDir)
+void ClassTemplateXMLParser::parseDirectories(const QDomDocument& arQDomDoc, std::vector<std::string>& arDir)
 {
    // get root element
    QDomElement lDocElem = arQDomDoc.documentElement();
@@ -277,8 +254,6 @@ bool ClassTemplateXMLParser::parseDirectories(const QDomDocument& arQDomDoc, std
          arDir.push_back(lPath);
       }
    }
-
-   return true;
 }
 
 
@@ -286,7 +261,7 @@ bool ClassTemplateXMLParser::parseDirectories(const QDomDocument& arQDomDoc, std
 // ----------
 
 
-bool ClassTemplateXMLParser::parseProperties(const QDomDocument& arQDomDoc,
+void ClassTemplateXMLParser::parseProperties(const QDomDocument& arQDomDoc,
                                              std::vector<std::shared_ptr<ClassTemplateProperty> >& arTplProps)
 {
    // get root element
@@ -355,13 +330,10 @@ bool ClassTemplateXMLParser::parseProperties(const QDomDocument& arQDomDoc,
          else
          {
             // undefined property type
-            std::runtime_error("Invalid property type: " + propType);
-            return false;
+            throw std::runtime_error("Invalid property type: " + propType);
          }
       }
    }
-
-   return true;
 }
 
 
@@ -369,7 +341,7 @@ bool ClassTemplateXMLParser::parseProperties(const QDomDocument& arQDomDoc,
 // ----------
 
 
-bool ClassTemplateXMLParser::parsePostProcessing(const QDomDocument& arQDomDoc,
+void ClassTemplateXMLParser::parsePostProcessing(const QDomDocument& arQDomDoc,
                                                  std::vector<std::shared_ptr<ClassTemplateCommand> >& arTplCmd)
 {
    // get root element
@@ -394,8 +366,6 @@ bool ClassTemplateXMLParser::parsePostProcessing(const QDomDocument& arQDomDoc,
          arTplCmd.push_back(std::make_shared<ClassTemplateCommand>(cmdName, cmdCommand, cmdParams, cmdInfo));
       }
    }
-
-   return true;
 }
 
 
@@ -403,7 +373,7 @@ bool ClassTemplateXMLParser::parsePostProcessing(const QDomDocument& arQDomDoc,
 // ----------
 
 
-bool ClassTemplateXMLParser::parseFileProperties(const QDomDocument& arQDomDoc,
+void ClassTemplateXMLParser::parseFileProperties(const QDomDocument& arQDomDoc,
                                                  std::vector<std::shared_ptr<ClassTemplateProperty> >& arTplFileProps)
 {
    // get root element
@@ -472,11 +442,8 @@ bool ClassTemplateXMLParser::parseFileProperties(const QDomDocument& arQDomDoc,
          else
          {
             // undefined property type
-            std::runtime_error("Invalid property type: " + propType);
-            return false;
+            throw std::runtime_error("Invalid property type: " + propType);
          }
       }
    }
-
-   return true;
 }

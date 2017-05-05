@@ -71,9 +71,9 @@ std::vector<std::shared_ptr<BaseToken> > StringParser::findTokens(const std::str
 
       // check if the end of the start token could be found
       if(lEnd == arStr.npos)
-      {
+      {         
          // if the end of the token could not be found, return error and empty map
-         //CVHAB_ERROR("Could not found end of Token " << arTokenEnd);
+         throw std::runtime_error("Could not found end of Token " + arTokenEnd);
       }
 
       // get whole token length (with start and end length)
@@ -140,10 +140,12 @@ std::vector<std::shared_ptr<BlockToken> > StringParser::findBlockTokens(const st
    {
       if (StringUtil::countOccurences(arStr, lTokens[i]->getStartName()) != StringUtil::countOccurences(arStr, lTokens[i]->getEndName()))
       {
-         //CVHAB_ERROR(
-         //   "Amount of Start Tokens " << StringUtil::countOccurences(arStr,lTokens[i]->getStartName()) 
-         //   << " of Token " << lTokens[i]->getName()
-         //   <<"do not match amount of End Tokens " << StringUtil::countOccurences(arStr,lTokens[i]->getEndName()) << " !");
+         throw std::runtime_error("Amount of Start Tokens "
+                                  + std::to_string(StringUtil::countOccurences(arStr,lTokens[i]->getStartName()))
+                                  + " of Token " + lTokens[i]->getName()
+                                  + " do not match amount of End Tokens "
+                                  + std::to_string(StringUtil::countOccurences(arStr,lTokens[i]->getEndName()))
+                                  + "!");
       }
    }
    
@@ -195,13 +197,13 @@ std::string StringParser::replaceBlockTokens(const std::string& arInStr,
       // error check
       if (StringUtil::countOccurences(arOutString, arInTokens[i]->getStartName()) != StringUtil::countOccurences(arOutString, arInTokens[i]->getEndName()))
       {
-         //CVHAB_ERROR("Amount of Start Tokens "
-         //   << StringUtil::countOccurences(arOutString, arInTokens[i]->getStartName())
-         //   << " of Token "
-         //   << arInTokens[i]->getName()
-         //   << " do not match amount of End Tokens "
-         //   << StringUtil::countOccurences(arOutString, arInTokens[i]->getEndName())
-         //   << " !")
+         throw std::runtime_error("Amount of Start Tokens "
+            + std::to_string(StringUtil::countOccurences(arOutString, arInTokens[i]->getStartName()))
+            + " of Token "
+            + arInTokens[i]->getName()
+            + " do not match amount of End Tokens "
+            + std::to_string(StringUtil::countOccurences(arOutString, arInTokens[i]->getEndName()))
+            + "!");
       }
 
       // if the value is true and there is no indent, replace only the token
@@ -231,11 +233,9 @@ std::string StringParser::replaceBlockTokens(const std::string& arInStr,
             lStartPos = arOutString.substr(0, lEndPos).rfind(arInTokens[i]->getStartName(), lEndPos);
             if (lStartPos == arOutString.npos)
             {
-               //CVHAB_ERROR("Found end string %1 before start string %1 for token %3"
-               //   << arInTokens[i]->getEndName()
-               //   << arInTokens[i]->getStartName()
-               //   << arInTokens[i]->getName()
-               //   );
+               throw std::runtime_error("Found end string " + arInTokens[i]->getEndName()
+                                        + " before start string " + arInTokens[i]->getStartName()
+                                        + " for token " + arInTokens[i]->getName());
             }
 
             size_t lEndPosInternal = 0;
@@ -272,11 +272,9 @@ std::string StringParser::replaceBlockTokens(const std::string& arInStr,
             lStartPos = arOutString.substr(0, lEndPos).rfind(arInTokens[i]->getStartName(), lEndPos);
             if (lStartPos == arOutString.npos)
             {
-              // CVHAB_ERROR("Found end string %1 before start string %1 for token %3"
-              //    << arInTokens[i]->getEndName()
-              //    << arInTokens[i]->getStartName()
-              //    << arInTokens[i]->getName()
-              //    );
+               throw std::runtime_error("Found end string " + arInTokens[i]->getEndName()
+                                        + " before start string " + arInTokens[i]->getStartName()
+                                        + " for token " + arInTokens[i]->getName());
             }
 
             // delete content

@@ -117,7 +117,14 @@ MainWindow::MainWindow(QWidget* apParent, Qt::WindowFlags aFlags)
    {
       std::shared_ptr<ClassTemplateData> lTplData;
 
-      ClassTemplateXMLParser::loadTemplateParameters(mTemplateFiles[i], lTplData);
+      try
+      {
+         ClassTemplateXMLParser::loadTemplateParameters(mTemplateFiles[i], lTplData);
+      }
+      catch(std::runtime_error e)
+      {
+         this->showError(e.what());
+      }
 
       ui.cbClassTemplates->addItem(lTplData->getName().c_str());
    }
@@ -198,8 +205,15 @@ void MainWindow::mSetClosing(const std::shared_ptr<UserSettingsData>& arSettings
    // update changed settings
    mSettings = arSettings;
    
-   // write changed settings to User-XML
-   ConfigurationManager::setUserSettings(mSettings);
+   try
+   {
+      // write changed settings to User-XML
+      ConfigurationManager::setUserSettings(mSettings);
+   }
+   catch(std::runtime_error e)
+   {
+      this->showError(e.what());
+   }
 
    // Update changed settings in Preview
    if(mPv->isVisible())
@@ -222,12 +236,19 @@ void MainWindow::cbIndexChanged(int aIndex)
    mTplFileProps.clear();
    mTplCmd.clear();
 
-   // parse selected template XML
-   ClassTemplateXMLParser::loadTemplateParameters(mTemplateFiles[static_cast<size_t>(aIndex)],
-                                                  mTplData,
-                                                  mTplProps,
-                                                  mTplFileProps,
-                                                  mTplCmd);
+   try
+   {
+      // parse selected template XML
+      ClassTemplateXMLParser::loadTemplateParameters(mTemplateFiles[static_cast<size_t>(aIndex)],
+                                                     mTplData,
+                                                     mTplProps,
+                                                     mTplFileProps,
+                                                     mTplCmd);
+   }
+   catch(std::runtime_error e)
+   {
+      this->showError(e.what());
+   }
 
    // get property index of class name
    for(size_t i = 0; i < mTplProps.size();i++)
@@ -336,10 +357,17 @@ bool MainWindow::parseFiles(std::string& arHppContent, std::string& arCppContent
    getTokens(lParsProps);
 
    // parse template file
-   if(mTplData->getHasHeader())
-      ClassCreator::parseTemplateFile(lTemplateHeaderFile, arHppContent, lParsProps);
-   if(mTplData->getHasSource())
-      ClassCreator::parseTemplateFile(lTemplateSourceFile, arCppContent, lParsProps);
+   try
+   {
+      if(mTplData->getHasHeader())
+         ClassCreator::parseTemplateFile(lTemplateHeaderFile, arHppContent, lParsProps);
+      if(mTplData->getHasSource())
+         ClassCreator::parseTemplateFile(lTemplateSourceFile, arCppContent, lParsProps);
+   }
+   catch(std::runtime_error e)
+   {
+      this->showError(e.what());
+   }
 
    return true;
 }
@@ -363,7 +391,16 @@ bool MainWindow::parseCmakeFile(std::string& arCmakeContent)
 
    // parse template file
    if(mTplData->getHasCmake())
-      ClassCreator::parseTemplateFile(lTemplateCmakeFile, arCmakeContent, lParsProps);
+   {
+      try
+      {
+         ClassCreator::parseTemplateFile(lTemplateCmakeFile, arCmakeContent, lParsProps);
+      }
+      catch(std::runtime_error e)
+      {
+         this->showError(e.what());
+      }
+   }
 
    return true;
 }
@@ -380,9 +417,16 @@ bool MainWindow::parseFilePaths(std::string& arHppPath, std::string& arCppPath, 
    getTokens(lParsProps);
 
    // parse file path templates
-   ClassCreator::parseTemplate(mTplData->getHeaderPath(), arHppPath, lParsProps);
-   ClassCreator::parseTemplate(mTplData->getSourcePath(), arCppPath, lParsProps);
-   ClassCreator::parseTemplate(mTplData->getCmakePath(), arCmakePath, lParsProps);
+   try
+   {
+      ClassCreator::parseTemplate(mTplData->getHeaderPath(), arHppPath, lParsProps);
+      ClassCreator::parseTemplate(mTplData->getSourcePath(), arCppPath, lParsProps);
+      ClassCreator::parseTemplate(mTplData->getCmakePath(), arCmakePath, lParsProps);
+   }
+   catch(std::runtime_error e)
+   {
+      this->showError(e.what());
+   }
 
    return true;
 }
@@ -925,7 +969,14 @@ void MainWindow::btGenerateClicked(void)
       for(size_t i = 0; i < lDir.size(); i++)
       {
          // parse file path template
-         ClassCreator::parseTemplate(lDir[i], lDir[i], lParsProps);
+         try
+         {
+            ClassCreator::parseTemplate(lDir[i], lDir[i], lParsProps);
+         }
+         catch(std::runtime_error e)
+         {
+            this->showError(e.what());
+         }
          lDir[i] = lOutputPath + lDir[i];
          // create path
          lFolder.setPath(lDir[i].c_str());
@@ -1127,8 +1178,15 @@ void MainWindow::lePathTextChanged(const QString& arText)
       // save changed path
       mSettings->mOutputPath = arText.toStdString();
 
-      // write changed settings to User-XML
-      ConfigurationManager::setUserSettings(mSettings);
+      try
+      {
+         // write changed settings to User-XML
+         ConfigurationManager::setUserSettings(mSettings);
+      }
+      catch(std::runtime_error e)
+      {
+         this->showError(e.what());
+      }
    }
 
    updatFilePaths();
