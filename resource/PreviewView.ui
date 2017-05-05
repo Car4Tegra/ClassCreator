@@ -17,7 +17,7 @@
    <enum>Qt::NoContextMenu</enum>
   </property>
   <property name="windowTitle">
-   <string>Class Creator - Preview</string>
+   <string>ClassCreator - Preview</string>
   </property>
   <property name="windowIcon">
    <iconset resource="Icons.qrc">
