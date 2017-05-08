@@ -7,3 +7,5 @@ To automatically copy the **template** directory to the build directory an addit
 2. Select the wanted **Build-Configuration**: `Debug` / `Release`
 3. Select **Add Build Step** -> **Make**
 4. Add for the **Make arguments**: `install`
+
+<IMG src="/images/Build_Settings.png" alt="Build Settings" class="displayed">
