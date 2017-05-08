@@ -8,4 +8,4 @@ To automatically copy the **template** directory to the build directory an addit
 3. Select **Add Build Step** -> **Make**
 4. Add for the **Make arguments**: `install`
 
-<IMG src="/images/Build_Settings.png" alt="Build Settings" class="displayed">
+<a href="/images/Build_Settings.png" target="_blank"><IMG src="/images/Build_Settings.png" alt="Build Settings" class="displayed"></a>
