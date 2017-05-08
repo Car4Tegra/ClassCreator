@@ -1,3 +1,5 @@
+[&larr; Back to ClassCreator](index.md)
+
 # Creating Templates for ClassCreator
 In this documentation the template creation for Car4Tegra ClassCreator will be explained.
 

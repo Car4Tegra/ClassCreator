@@ -1,3 +1,5 @@
+[&larr; Back to ClassCreator](index.md)
+
 # Building ClassCreator
 To automatically copy the **template** directory to the build directory an additional building step has to be added in Qt Creator:
 
