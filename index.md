@@ -1,11 +1,6 @@
 <img src="/images/Screenshot.png" alt="Screenshot" align="middle">
 
-<a href="build_instructions.md" class="myButton">Build From Source</a>
-
-* [Install]()
-
-* [Build From Source](build_instructions.md)
-
-* [Creating Templates](create_templates.md)
-
-* [License Info](licenseinfo.md)
+<a href="install_instructions.html" class="myButton">Install</a>
+<a href="build_instructions.html" class="myButton">Build From Source</a>
+<a href="create_templates.html" class="myButton">Creating Templates</a>
+<a href="licenseinfo.html" class="myButton">License Info</a>
