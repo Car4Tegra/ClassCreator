@@ -1,4 +1,6 @@
 [&larr; Back to ClassCreator](index.md)
 
-# Downloading ClassCreator
+# Download ClassCreator
+
+Currently no binary downloads are available.
 
